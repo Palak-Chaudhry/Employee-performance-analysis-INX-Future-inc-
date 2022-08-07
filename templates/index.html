@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>EMPLOYEE PERFORMANCE RATING PREDICTION</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" href="static/style.css"> -->
+  <style>
+    .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+    .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+    .btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+    .btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+    .btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+    .btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+    .btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+    .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+    .btn-block { width: 100%; display:block; }
+    * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; } 
+    body {
+      background: black ;
+      overflow:scroll; 
+      scroll-behavior: smooth;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .login {
+      position: absolute;
+      top: 40%;
+      left: 20%;
+      margin: -150px 0 0 -150px;
+      width:75%;
+      height:75%;
+      color: rgb(112, 163, 226);
+    }
+    h1 {color: aliceblue; text-align: center;}
+    input { 
+      width: 100%; 
+      margin-bottom: 10px; 
+      background: rgba(0,0,0,0.3);
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 13px;
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 4px;
+      box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+      -webkit-transition: box-shadow .5s ease;
+      -moz-transition: box-shadow .5s ease;
+      -o-transition: box-shadow .5s ease;
+      -ms-transition: box-shadow .5s ease;
+      transition: box-shadow .5s ease;
+    }
+    select { 
+      width: 100%; 
+      margin-bottom: 10px; 
+      background: rgba(0,0,0,0.3);
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 13px;
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 4px;
+      box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+      -webkit-transition: box-shadow .5s ease;
+      -moz-transition: box-shadow .5s ease;
+      -o-transition: box-shadow .5s ease;
+      -ms-transition: box-shadow .5s ease;
+      transition: box-shadow .5s ease;
+    }
+  </style>
+</head>
+
+<body>
+ <h1>EMPLOYEE PERFORMANCE RATING PREDICTION</h1>
+ <div class="login">
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <label>Rate 1 - 5 ( 1 being worst)</label>
+    	<input type="text" name="EmpEnvironmentSatisfaction" placeholder="Rate - Environment Satisfaction" required="required" />
+      <br>
+      <label>Last Salary Hike Percent</label>
+      <input type="text" name="EmpLastSalaryHikePercent" placeholder="Last Salary Hike Percent" required="required" />
+      <br>
+      <label>Rate 1 - 5 ( 1 being worst)</label>
+      <input type="text" name="EmpWorkLifeBalance" placeholder="Rate - Work Life Balance" required="required" />
+      <br>
+      <label>Experience Years In Current Role</label>
+      <input type="text" name="ExperienceYearsInCurrentRole" placeholder="Experience Years In Current Role" required="required" />
+      <br>
+      <label>Year Since Last Promotion</label>
+      <input type="text" name="YearsSinceLastPromotion" placeholder="Year Since Last Promotion" required="required" />
+      <br>
+      <label>Years With Curr Manager</label>
+      <input type="text" name="YearsWithCurrManager" placeholder="Years With Curr Manager" required="required" />
+      <br>
+      <label>Experience Years At This Company</label>
+      <input type="text" name="ExperienceYearsAtThisCompany" placeholder="Experience Years At This Company" required="required" />
+      <br>
+      <label for="EmpDepartment">Choose a Department:</label>
+      <select name="Department" id="Department">
+        <option value=0>Data Science</option>
+        <option value=1>Development</option>
+        <option value=2>Finance</option>
+        <option value=3>Human Resources</option>
+        <option value=4>Research & Development</option>
+        <option value=5>Sales</option>
+      </select>
+      <br>
+      <label for="OverTime">Did you work over time?:</label>
+      <select name="Over time" id="Over time">
+        <option value=0>No</option>
+        <option value=1>Yes</option>
+      </select>
+      <br>
+      <label for="EmpJobRole">Choose your Job Role:</label>
+      <select name="EmpJobRole" id="EmpJobRole">
+        <option value=0>Business Analyst</option>
+        <option value=1>Data Scientist</option>
+        <option value=2>Delivery Manager</option>
+        <option value=3>Developer</option>
+        <option value=4>Finance Manager</option>
+        <option value=5>Healthcare Representative</option>
+        <option value=7>Human Resources</option>
+        <option value=8>Laboratory Technician</option>
+        <option value=9>Manager R&D</option>
+        <option value=10>Manufacturing Director</option>
+        <option value=11>Research Director</option>
+        <option value=12>Research Scientist</option>
+        <option value=13>Sales Executive</option>
+        <option value=14>Sales Representative</option>
+        <option value=15>Senior Developer</option>
+        <option value=16>Senior Manager R&D</option>
+        <option value=17>Technical Architect</option>
+        <option value=18>Technical Lead</option>
+      </select>
+      <br>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <br>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
