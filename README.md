@@ -17,10 +17,11 @@ You must have Scikit Learn, Pandas (for Machine Leraning Model) and Flask (for A
 
 ### Project Structure
 This project has four major parts :
-1. model.py - This contains code fot our Machine Learning model to predict employee salaries absed on trainign data in 'hiring.csv' file.
+1. model.py - This contains code fot our Machine Learning model to predict employee salaries absed on trainign data in 'EP.xls' file.
 2. app.py - This contains Flask APIs that receives employee details through GUI or API calls, computes the precited value based on our model and returns it.
-3. Employee prediction analysis.pptx - This contains the insights
-4. templates - This folder contains the HTML template to allow user to enter employee detail and displays the predicted employee salary.
+3. funcs.py - This contains the common functions needed in model.py and app.py
+4. Employee prediction analysis.pptx - This contains the insights
+5. templates - This folder contains the HTML template to allow user to enter employee detail and displays the predicted employee salary.
 
 ### Running the project
 1. Ensure that you are in the project home directory. Create the machine learning model by running below command -
